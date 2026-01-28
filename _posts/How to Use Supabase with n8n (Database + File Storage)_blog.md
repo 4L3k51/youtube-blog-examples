@@ -1,4 +1,3 @@
-```markdown
 # Building an Automated AI-Powered Social Media Content Workflow with NAN and Supabase
 
 Looking to streamline your social media content generation using AI? This guide walks through creating a fully automated workflow that generates engaging Twitter content about PostgreSQL, pairs it with a code snippet image, and stores everything in Supabase—all orchestrated by [NAN](https://nan.ai/) and OpenAI.
