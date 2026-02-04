@@ -1,3 +1,0 @@
-Bun comes with SQLite and S3 built in, making database queries and file uploads faster and easier than using NPM packages. You can upload files to S3 or query a database in just a few lines. Head to [database.new](https://database.new) to spin up a free Supabase project—it includes a Postgres database, S3 storage, and other features.
-
-Set up your environment variables, and in seconds you can have an app that uploads files to S3 and talks to Postgres. This keeps your codebase smaller, faster, and simpler to maintain, and reduces output tokens when you use this in AI workflows.
