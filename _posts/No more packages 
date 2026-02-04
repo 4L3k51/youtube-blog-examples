@@ -1,0 +1,41 @@
+Bun has SQL and S3 built in, making database queries and file uploads way faster and easier than any NPM package.
+
+1. **Create a Supabase Project**
+   - Go to [database.new](https://database.new) to instantly spin up a free Supabase project.
+   - You get a Postgres database, S3 storage, and more—no setup hassles.
+
+2. **Set Your Environment Variables**
+   - Grab your connection strings and credentials from your new Supabase project.
+   - Add them to your `.env` or Bun config:
+
+     ```env
+     POSTGRES_URL=<your-postgres-connection-string>
+     S3_ENDPOINT=<your-s3-endpoint>
+     S3_ACCESS_KEY=<your-access-key>
+     S3_SECRET_KEY=<your-secret-key>
+     S3_BUCKET=<your-bucket-name>
+     ```
+
+3. **Upload a File & Query the Database (in Bun)**
+   - Just a couple lines for each:
+
+     ```js
+     // Upload file to S3
+     const s3 = new Bun.S3({
+       endpoint: process.env.S3_ENDPOINT,
+       accessKeyId: process.env.S3_ACCESS_KEY,
+       secretAccessKey: process.env.S3_SECRET_KEY,
+     });
+
+     await s3.putObject({
+       Bucket: process.env.S3_BUCKET,
+       Key: "file.txt",
+       Body: Bun.file("file.txt")
+     });
+
+     // Query Postgres
+     const db = new Bun.Database(process.env.POSTGRES_URL);
+     const result = await db.query("SELECT * FROM users;");
+     ```
+
+No heavy packages, no boilerplate. Just faster apps, less code, and easier handoff when using AI tools like Claude.
