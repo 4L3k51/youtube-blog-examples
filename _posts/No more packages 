@@ -1,0 +1,35 @@
+## Fast File Uploads & DB Queries with Bun and Supabase
+
+Bun's runtime comes with built-in SQL and S3 APIs—faster than using npm packages. Here’s how to quickly set up file uploads and database queries with Supabase:
+
+1. **Create a Supabase Project**
+   - Go to [database.nu](https://database.nu) to spin up a free Supabase project.
+   - You get Postgres and S3-compatible storage out of the box.
+
+2. **Set Environment Variables**
+   - In your Bun project, add environment variables for your Supabase instance (URL, keys, etc.).
+   ```env
+   SUPABASE_URL=<your-supabase-url>
+   SUPABASE_KEY=<your-service-role-key>
+   SUPABASE_S3_ENDPOINT=<your-s3-endpoint>
+   SUPABASE_S3_KEY=<your-s3-key>
+   SUPABASE_S3_SECRET=<your-s3-secret>
+   ```
+
+3. **Upload a File and Query the Database**
+   - With Bun, uploading a file to S3 or running a SQL query takes just a couple lines.
+   ```js
+   // S3 upload
+   const s3 = new Bun.S3({
+     endpoint: process.env.SUPABASE_S3_ENDPOINT,
+     accessKeyId: process.env.SUPABASE_S3_KEY,
+     secretAccessKey: process.env.SUPABASE_S3_SECRET,
+   });
+   await s3.putObject('bucket/file.txt', Buffer.from('hello world'));
+
+   // SQL query
+   const sql = new Bun.Database(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+   const rows = await sql.query('SELECT * FROM my_table');
+   ```
+
+That’s it—less code, less setup, faster results.
